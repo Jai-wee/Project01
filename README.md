@@ -13,6 +13,33 @@
 
 ---
 
+## ⚡ สรุปคำสั่งติดตั้งแพ็กเกจและจุดที่ต้องแก้ไขเมื่อย้ายเครื่อง (Quick Start & Migration)
+
+### 1. คำสั่งติดตั้งแพ็กเกจและสั่งรัน
+
+- **ฝั่ง Backend (ในโฟลเดอร์ `Attendance-Backend-main`):**
+  ```bash
+  cd Attendance-Backend-main
+  pip install -r requirements.txt
+  uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+  ```
+
+- **ฝั่ง Frontend (ในโฟลเดอร์ `Attendance-main`):**
+  ```bash
+  cd Attendance-main
+  flutter pub get
+  flutter run
+  ```
+  *(หรือ `flutter run -d chrome` หากต้องการทดสอบบน Google Chrome)*
+
+### 2. จุดที่ต้องแก้ไขเมื่อย้ายไปรันบนเครื่องใหม่ (มีแค่ 2 ไฟล์ / 3 จุด)
+
+1. **`Attendance-Backend-main/main.py` (บรรทัดที่ 50–55):** แก้ `user` และ `password` ในฟังก์ชัน `get_db_connection()` ให้ตรงกับ MySQL ของเครื่องใหม่ (ถ้าใช้ XAMPP ปกติ `password=""`)
+2. **`Attendance-Backend-main/main.py` (บรรทัดที่ 1019):** แก้ IP ใน `file_url` (เช่น `http://192.168.1.35:8000/files/{file_name}`) ให้เป็น IP ของเครื่องใหม่ หรือ `localhost` ถ้ารันบนเครื่องเดียวกัน
+3. **`Attendance-main/lib/config/api_config.dart` (บรรทัดที่ 3):** แก้ `baseUrl` ให้เป็น IP เครื่องใหม่ (เช่น `http://192.168.X.X:8000` สำหรับมือถือ หรือ `http://localhost:8000` สำหรับ Chrome)
+
+---
+
 ## 🛠 สิ่งที่ต้องติดตั้งในเครื่องก่อนเริ่ม (Prerequisites)
 
 1. **Python 3.10+**: [ดาวน์โหลด Python](https://www.python.org/downloads/) *(อย่าลืมติ๊ก Add Python to PATH)*
