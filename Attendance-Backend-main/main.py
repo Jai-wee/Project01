@@ -49,7 +49,7 @@ def get_db_connection():
     return pymysql.connect(
         host="localhost",
         user="root",
-        password="Jaijai_643147",  
+        password="68112444",  
         database="attendance_db",
         cursorclass=pymysql.cursors.DictCursor
     )
@@ -1016,7 +1016,7 @@ async def upload_profile_image(user_id: int = Form(...), file: UploadFile = File
 
         # 2. สร้าง URL เต็มรูปแบบ เพื่อให้แอป Flutter ดึงไปแสดงผลผ่าน NetworkImage ได้ทันที
         # (อิงจาก Host ที่รัน เช่น http://192.168.1.35:8000/files/...)
-        file_url = f"http://192.168.1.35:8000/files/{file_name}"
+        file_url = f"http://10.45.46.36:8000/files/{file_name}"
 
         with connection.cursor() as cursor:
             # 3. อัปเดต Path/URL ลงในฐานข้อมูลคอลัมน์ profile_image_path
